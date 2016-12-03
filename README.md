@@ -4,13 +4,13 @@ Some fish function scripts I used personally.
 
 ## Content
 Including commands:
-, - ls -lphG
-,, - ls -alphG
-fish\_prompt - Very simple prompt
-cdnow - A quick CD command to go to pre-defined paths
+* __,__ - _ls -lphG_
+* __,,__ - _ls -alphG_
+* __fish\_prompt__ - _Very simple fish prompt_
+* __cdnow__ - _A quick **cd** command to go to pre-defined paths_
 
 ## Installation
-Put all files into ~/.config/fish/ or add ./functions folder to $fish\_function\_path environment variable.
+Put all files into __~/.config/fish/__ folder or add this ./functions folder location to __$fish\_function\_path__ environment variable.
 
 ## Composer
 Sonicfly, a.k.a Zkk
