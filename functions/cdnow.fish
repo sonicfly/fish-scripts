@@ -12,7 +12,7 @@ function cdnow --description 'Interactive cd command for predefined shortcut pat
 			case -e --edit
 				if [ ! -e $configFile ]
 					mkdir -p (dirname $configFile)
-					echo "# Format:\n#\t[identifier] = [path]\n# Example:\npictures = /Users/zkk/pictures" > $configFile
+					echo -e "# Format:\n#\t[identifier] = [path]\n# Example:\n#\tpictures = /Users/zkk/pictures" > $configFile
 				else if [ ! -f $configFile ]
 					set_color red
 					echo "Error> Invalid config file, need manually delete: $configFile"
@@ -32,9 +32,8 @@ function cdnow --description 'Interactive cd command for predefined shortcut pat
 				set -e argv[1]
 
 			case --
-				set -e argv[1]
-				if [ (count $argv) -gt 0 ]
-					set selection $argv[1]
+				if [ (count $argv) -gt 1 ]
+					set selection $argv[2]
 				end
 				break
 
@@ -117,7 +116,7 @@ function cdnow --description 'Interactive cd command for predefined shortcut pat
 		end
 
 		# shortcut ! - script path
-		set options $options '!'
+		set options $options '@'
 		set identifiers $identifiers '<custom shell script directory>'
 		set paths $paths (dirname (status -f))
 

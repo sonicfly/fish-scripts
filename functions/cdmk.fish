@@ -17,7 +17,7 @@ function cdmk --description 'Interactive cd command for marked path'
 	while count $argv >/dev/null
 		switch $argv[1]
 			case -h --help
-				echo "cdrec [-h|--help] [(-a|--add)] [(-c|--clean] [(-r|--reload)] [SHORTCUT]"
+				echo "cdmk [(-h|--help)] [(-a|--add)] [(-c|--clean] [(-r|--reload)] [SHORTCUT]"
 				return 0
 
 			case -a --add
@@ -37,9 +37,8 @@ function cdmk --description 'Interactive cd command for marked path'
 				set -e argv[1]
 
 			case --
-				set -e argv[1]
-				if [ (count $argv) -gt 0 ]
-					set selection $argv[1]
+				if [ (count $argv) -gt 1 ]
+					set selection $argv[2]
 				end
 				break
 
@@ -64,15 +63,19 @@ function cdmk --description 'Interactive cd command for marked path'
 
 	# update marks
 	if set -q -l newMark
-		if set i (contains -i -- $newMark $$cacheName[1])
-			set -e $cacheName[$i]
-			echo "Bump existed mark: $newMark"
-		else
+		if not set i (contains -i -- $newMark $$cacheName[1])
 			echo "Add mark: $newMark"
+			set -g $cacheName $newMark $$cacheName[1]
+			set isChanged true
+		else if [ $i -eq 1 ]
+			echo "Existed mark: $newMark"
+		else
+			set -e $cacheName[1][$i]
+			echo "Bump existed mark: $newMark"
+			set -g $cacheName $newMark $$cacheName[1]
+			set isChanged true
 		end
 		
-		set -g $cacheName $newMark $$cacheName[1]
-		set isChanged true
 	end
 
 	if set -q -g $cacheName
@@ -82,7 +85,7 @@ function cdmk --description 'Interactive cd command for marked path'
 				set_color red
 				echo "Info> Remove invalid path: $$cacheName[1][$i]" 
 				set_color normal
-				set -e $cacheName[$i]
+				set -e $cacheName[1][$i]
 				set isChanged true
 			end
 		end
