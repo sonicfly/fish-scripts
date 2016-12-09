@@ -17,13 +17,17 @@ Use **cdnow -e** to edit the config file to add predefined shortcut path as you 
 
 Normally, I add current project root path to config file to quickly jump to project I am working on.
 
+__Note:__ Using this command will save config on ~/.config/zqcd/ folder, and create $ZQCD_cdnow global variable.
+
 ### cdmk ###
 This command can 'mark' a path, then you can quick jump back to marked paths using shortcut or select the shortcut in interactive mode.
 Use **mkcd** or **cdmk -a** to mark current path.
 
 You can also use $cdmk[_index_] to reference the marked path in command line.
 
-Normally, I use it to switch back and forth among severl related path in copying or comparing situation.
+Normally, I use it to switch back and forth among several related paths for copying or comparison.
+
+__Note:__ Using this command will save config on ~/.config/zqcd/ folder, and create $CDMK global variable (variable name can be changed).
 
 ## Installation
 Put all files into __~/.config/fish/__ folder or add this ./functions folder location to __$fish\_function\_path__ environment variable.
