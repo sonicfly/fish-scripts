@@ -115,7 +115,7 @@ function cdnow --description 'Interactive cd command for predefined shortcut pat
 			end
 		end
 
-		# shortcut ! - script path
+		# shortcut @ - script path
 		set options $options '@'
 		set identifiers $identifiers '<custom shell script directory>'
 		set paths $paths (dirname (status -f))
@@ -130,7 +130,7 @@ function cdnow --description 'Interactive cd command for predefined shortcut pat
 		for i in (seq (count $options))
 			echo "$options[$i]) $identifiers[$i]"
 		end
-		read -p 'set_color blue; echo -n "Select>"; set_color normal' -l input
+		read -p 'set_color 1070FF green; echo -n "Select>"; set_color normal' -l input
 		set selection $input
 	end
 	

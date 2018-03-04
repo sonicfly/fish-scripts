@@ -133,7 +133,7 @@ function cdmk --description 'Interactive cd command for marked path'
 		for i in (seq (count $options))
 			echo "$options[$i]) $$cacheName[1][$i]"
 		end
-		read -p 'set_color blue; echo -n "Select>"; set_color normal' -l input
+		read -p 'set_color 1070FF green; echo -n "Select>"; set_color normal' -l input
 		set selection $input
 	end
 	
